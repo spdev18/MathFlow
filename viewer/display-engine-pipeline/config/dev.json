@@ -1,0 +1,20 @@
+{
+  "mode": "dev",
+  "displayConfig": {
+    "containerSelector": "#formula-container"
+  },
+  "engineAdapter": {
+    "mode": "embedded",
+    "httpEndpoint": "http://localhost:4201/api/entry-step",
+    "httpTimeout": 5000
+  },
+  "recorder": {
+    "outputDir": "./logs",
+    "sessionPrefix": "dev-session",
+    "autoFlush": true
+  },
+  "fileBus": {
+    "name": "dev-bus",
+    "maxHistory": 1000
+  }
+}

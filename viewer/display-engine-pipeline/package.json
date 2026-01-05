@@ -1,0 +1,26 @@
+{
+  "name": "display-engine-pipeline",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Interactive math UI: Display to Engine pipeline (C2-C6)",
+  "scripts": {
+    "build": "tsc",
+    "test": "tsx --test tests",
+    "demo": "node dist/launcher/launcher.mjs --mode=demo",
+    "dev": "node dist/launcher/launcher.mjs --mode=dev --config=./config/dev.json",
+    "test:replay": "node dist/launcher/launcher.mjs --mode=test --scenario=./scenarios/example-session.jsonl",
+    "e2e": "tsx ./src/e2e/itu-e2e.ts",
+    "e2e:http": "tsx ./src/e2e/itu-e2e-http.ts",
+    "e2e:mapmaster": "tsx ./src/e2e/itu-e2e-mapmaster.ts",
+    "e2e:mapmaster:http": "tsx ./src/e2e/itu-e2e-mapmaster-http.ts"
+  },
+  "dependencies": {
+    "@motor/mapmaster-bridge": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.27.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.3.0"
+  }
+}

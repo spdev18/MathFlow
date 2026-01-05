@@ -1,0 +1,152 @@
+[
+  {
+    "id": "user-seed-1",
+    "username": "student1",
+    "password": "pass",
+    "role": "student"
+  },
+  {
+    "id": "user-seed-2",
+    "username": "teacher1",
+    "password": "pass",
+    "role": "teacher"
+  },
+  {
+    "id": "user-1764613624906-0.9672236321457608",
+    "username": "persist_user",
+    "password": "pass123",
+    "role": "student"
+  },
+  {
+    "id": "user-1764613939829-0.9090368449575854",
+    "username": "teacher_err",
+    "password": "pwd",
+    "role": "teacher"
+  },
+  {
+    "id": "user-1764613939832-0.8866444497999384",
+    "username": "student_err",
+    "password": "pwd",
+    "role": "student"
+  },
+  {
+    "id": "user-1764614438478-0.03304660978464091",
+    "username": "teacher_err_1764614438477",
+    "password": "pwd",
+    "role": "teacher"
+  },
+  {
+    "id": "user-1764614438482-0.1636588817975526",
+    "username": "student_err_1764614438477",
+    "password": "pwd",
+    "role": "student"
+  },
+  {
+    "id": "user-1764614483114-0.8081726334230261",
+    "username": "teacher_err_1764614483113",
+    "password": "pwd",
+    "role": "teacher"
+  },
+  {
+    "id": "user-1764614483117-0.2107455784918466",
+    "username": "student_err_1764614483113",
+    "password": "pwd",
+    "role": "student"
+  },
+  {
+    "id": "user-1764614537247-0.5389377544002958",
+    "username": "teacher_err_1764614537245",
+    "password": "pwd",
+    "role": "teacher"
+  },
+  {
+    "id": "user-1764614537250-0.14198522561044813",
+    "username": "student_err_1764614537245",
+    "password": "pwd",
+    "role": "student"
+  },
+  {
+    "id": "user-1764614593055-0.5778235864011847",
+    "username": "teacher_err_1764614593054",
+    "password": "pwd",
+    "role": "teacher"
+  },
+  {
+    "id": "user-1764614593059-0.8084431193625636",
+    "username": "student_err_1764614593054",
+    "password": "pwd",
+    "role": "student"
+  },
+  {
+    "id": "user-1764614668136-0.3695666150785062",
+    "username": "teacher_err_1764614668135",
+    "password": "pwd",
+    "role": "teacher"
+  },
+  {
+    "id": "user-1764614668140-0.8128830267355176",
+    "username": "student_err_1764614668135",
+    "password": "pwd",
+    "role": "student"
+  },
+  {
+    "id": "user-1764614750487-0.961671242867637",
+    "username": "teacher_err_1764614750486",
+    "password": "pwd",
+    "role": "teacher"
+  },
+  {
+    "id": "user-1764614750492-0.35186472963252724",
+    "username": "student_err_1764614750486",
+    "password": "pwd",
+    "role": "student"
+  },
+  {
+    "id": "user-1764614802455-0.6937235103380934",
+    "username": "teacher_err_1764614802453",
+    "password": "pwd",
+    "role": "teacher"
+  },
+  {
+    "id": "user-1764614802459-0.7807227936948204",
+    "username": "student_err_1764614802453",
+    "password": "pwd",
+    "role": "student"
+  },
+  {
+    "id": "user-1764614943548-0.4980973392018595",
+    "username": "teacher_err_1764614943546",
+    "password": "pwd",
+    "role": "teacher"
+  },
+  {
+    "id": "user-1764614943551-0.07835962915740824",
+    "username": "student_err_1764614943546",
+    "password": "pwd",
+    "role": "student"
+  },
+  {
+    "id": "user-1764615091085-0.42351223755549716",
+    "username": "teacher_err_1764615091083",
+    "password": "pwd",
+    "role": "teacher"
+  },
+  {
+    "id": "user-1764615091088-0.627606079828575",
+    "username": "student_err_1764615091083",
+    "password": "pwd",
+    "role": "student"
+  },
+  {
+    "id": "user-1764615152314-0.5436918063101879",
+    "username": "teacher_err_1764615152313",
+    "password": "pwd",
+    "role": "teacher"
+  },
+  {
+    "id": "user-1764615152318-0.3465059969798898",
+    "username": "student_err_1764615152313",
+    "password": "pwd",
+    "role": "student"
+  }
+]

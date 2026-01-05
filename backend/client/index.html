@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>MathMaster Demo Client</title>
+
+  <!-- KaTeX CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+  />
+
+  <!-- KaTeX JS -->
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+  ></script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+
+    #math-container {
+      font-size: 2em;
+      margin: 20px 0;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      min-height: 60px;
+    }
+
+    .controls {
+      margin-bottom: 16px;
+    }
+
+    button {
+      padding: 8px 16px;
+      margin-right: 8px;
+      font-size: 1rem;
+    }
+
+    #log {
+      font-family: Consolas, monospace;
+      font-size: 0.9rem;
+      background: #f3f3f3;
+      border-radius: 4px;
+      padding: 10px;
+      white-space: pre-wrap;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>MathMaster Demo Client</h1>
+  <p>
+    Click on the math expression to see DOM event details in the console and
+    the log below.
+  </p>
+
+  <div id="math-container">Loading...</div>
+
+  <div class="controls">
+    <button id="step-btn">Apply Step</button>
+    <button id="reset-btn">Reset</button>
+  </div>
+
+  <div id="log">Logs will appear here...</div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,539 @@
+{
+  "primitives": [
+    {
+      "id": "P.INT_ADD",
+      "name": "Integer Addition",
+      "category": "integer",
+      "tags": [],
+      "pattern": "a + b",
+      "resultPattern": "calc(a+b)",
+      "description": "Сложение целых чисел"
+    },
+    {
+      "id": "P.INT_SUB",
+      "name": "Integer Subtraction",
+      "category": "integer",
+      "tags": [],
+      "pattern": "a - b",
+      "resultPattern": "calc(a-b)",
+      "description": "Вычитание целых чисел"
+    },
+    {
+      "id": "P.INT_MUL",
+      "name": "Integer Multiplication",
+      "category": "integer",
+      "tags": [],
+      "pattern": "a * b",
+      "resultPattern": "calc(a*b)",
+      "description": "Умножение целых чисел"
+    },
+    {
+      "id": "P.INT_DIV_TO_INT",
+      "name": "Integer Division (Exact)",
+      "category": "integer",
+      "tags": [],
+      "pattern": "a / b",
+      "resultPattern": "calc(a/b)",
+      "description": "Деление нацело"
+    },
+    {
+      "id": "P.INT_DIV_FRAC",
+      "name": "Integer Division (Fraction)",
+      "category": "integer",
+      "tags": [],
+      "pattern": "a / b",
+      "resultPattern": "a / b",
+      "description": "Деление с остатком (дробь)"
+    },
+    {
+      "id": "P.FRAC_ADD_SAME_DEN",
+      "name": "Fraction Addition (Same Denom)",
+      "category": "fraction",
+      "tags": [],
+      "pattern": "a/c + b/c",
+      "resultPattern": "(a + b) / c",
+      "description": "Сложение дробей с одинаковыми знаменателями"
+    },
+    {
+      "id": "P.FRAC_SUB_SAME_DEN",
+      "name": "Fraction Subtraction (Same Denom)",
+      "category": "fraction",
+      "tags": [],
+      "pattern": "a/c - b/c",
+      "resultPattern": "(a - b) / c",
+      "description": "Вычитание дробей с одинаковыми знаменателями"
+    },
+    {
+      "id": "P.FRAC_MUL",
+      "name": "Fraction Multiplication",
+      "category": "fraction",
+      "tags": [],
+      "pattern": "a/b * c/d",
+      "resultPattern": "(a*c) / (b*d)",
+      "description": "Умножение дробей"
+    },
+    {
+      "id": "P.FRAC_DIV",
+      "name": "Fraction Division",
+      "category": "fraction",
+      "tags": [],
+      "pattern": "a/b / c/d",
+      "resultPattern": "a/b * d/c",
+      "description": "Деление дробей"
+    },
+    {
+      "id": "P.FRAC_ADD_DIFF",
+      "name": "Fraction Addition (Diff Denom)",
+      "category": "fraction",
+      "tags": [],
+      "pattern": "a/b + c/d",
+      "resultPattern": "(a*d + c*b) / (b*d)",
+      "description": "Сложение дробей с разными знаменателями"
+    },
+    {
+      "id": "P.DEC_ADD",
+      "name": "Decimal Addition",
+      "category": "decimal",
+      "tags": [],
+      "pattern": "a + b",
+      "resultPattern": "calc(a+b)",
+      "description": "Сложение десятичных дробей"
+    },
+    {
+      "id": "P.DEC_SUB",
+      "name": "Decimal Subtraction",
+      "category": "decimal",
+      "tags": [],
+      "pattern": "a - b",
+      "resultPattern": "calc(a-b)",
+      "description": "Вычитание десятичных дробей"
+    },
+    {
+      "id": "P.DEC_MUL",
+      "name": "Decimal Multiplication",
+      "category": "decimal",
+      "tags": [],
+      "pattern": "a * b",
+      "resultPattern": "calc(a*b)",
+      "description": "Умножение десятичных дробей"
+    },
+    {
+      "id": "P.DEC_DIV",
+      "name": "Decimal Division",
+      "category": "decimal",
+      "tags": [],
+      "pattern": "a / b",
+      "resultPattern": "calc(a/b)",
+      "description": "Деление десятичных дробей"
+    },
+    {
+      "id": "P.INT_PLUS_FRAC",
+      "name": "Integer + Fraction",
+      "category": "mixed",
+      "tags": [],
+      "pattern": "a + b/c",
+      "resultPattern": "a/1 + b/c",
+      "description": "Целое плюс дробь"
+    },
+    {
+      "id": "P.INT_MINUS_FRAC",
+      "name": "Integer - Fraction",
+      "category": "mixed",
+      "tags": [],
+      "pattern": "a - b/c",
+      "resultPattern": "a/1 - b/c",
+      "description": "Целое минус дробь"
+    },
+    {
+      "id": "P.PAREN_UNWRAP",
+      "name": "Unwrap Parentheses",
+      "category": "structure",
+      "tags": [],
+      "pattern": "(a + b)",
+      "resultPattern": "a + b",
+      "description": "Раскрытие скобок"
+    },
+    {
+      "id": "P.PAREN_SINGLE",
+      "name": "Remove Extra Parentheses",
+      "category": "structure",
+      "tags": [],
+      "pattern": "((a))",
+      "resultPattern": "(a)",
+      "description": "Лишние скобки"
+    },
+    {
+      "id": "P.NEG_DIST_ADD",
+      "name": "Distribute Negative (Add)",
+      "category": "structure",
+      "tags": [],
+      "pattern": "-(a + b)",
+      "resultPattern": "-a - b",
+      "description": "Раскрытие минуса перед суммой"
+    },
+    {
+      "id": "P.NEG_DIST_SUB",
+      "name": "Distribute Negative (Sub)",
+      "category": "structure",
+      "tags": [],
+      "pattern": "-(a - b)",
+      "resultPattern": "-a + b",
+      "description": "Раскрытие минуса перед разностью"
+    },
+    {
+      "id": "P.NEG_NEG",
+      "name": "Double Negative",
+      "category": "structure",
+      "tags": [],
+      "pattern": "-(-a)",
+      "resultPattern": "a",
+      "description": "Минус на минус"
+    },
+    {
+      "id": "P.FRAC_NEG_NUM",
+      "name": "Negative Numerator",
+      "category": "fraction",
+      "tags": [],
+      "pattern": "(-a)/b",
+      "resultPattern": "-(a/b)",
+      "description": "Минус из числителя"
+    },
+    {
+      "id": "P.FRAC_DEN_NEG_P",
+      "name": "Negative Denominator (Intermediate)",
+      "category": "fraction",
+      "tags": [],
+      "pattern": "a/(-b)",
+      "resultPattern": "a/-b",
+      "description": "Минус в знаменателе (промежуточный)"
+    },
+    {
+      "id": "P.FRAC_NEG_DEN",
+      "name": "Negative Denominator",
+      "category": "fraction",
+      "tags": [],
+      "pattern": "a/-b",
+      "resultPattern": "-(a/b)",
+      "description": "Минус из знаменателя"
+    },
+    {
+      "id": "P.ADD_ZERO_L",
+      "name": "Add Zero Left",
+      "category": "identity",
+      "tags": [],
+      "pattern": "0 + a",
+      "resultPattern": "a",
+      "description": "Сложение с нулем слева"
+    },
+    {
+      "id": "P.ADD_ZERO_R",
+      "name": "Add Zero Right",
+      "category": "identity",
+      "tags": [],
+      "pattern": "a + 0",
+      "resultPattern": "a",
+      "description": "Сложение с нулем справа"
+    },
+    {
+      "id": "P.SUB_ZERO",
+      "name": "Subtract Zero",
+      "category": "identity",
+      "tags": [],
+      "pattern": "a - 0",
+      "resultPattern": "a",
+      "description": "Вычитание нуля"
+    },
+    {
+      "id": "P.SUB_SELF",
+      "name": "Subtract Self",
+      "category": "identity",
+      "tags": [],
+      "pattern": "a - a",
+      "resultPattern": "0",
+      "description": "Вычитание самого себя"
+    },
+    {
+      "id": "P.MUL_ZERO_L",
+      "name": "Multiply Zero Left",
+      "category": "identity",
+      "tags": [],
+      "pattern": "0 * a",
+      "resultPattern": "0",
+      "description": "Умножение на ноль слева"
+    },
+    {
+      "id": "P.MUL_ZERO_R",
+      "name": "Multiply Zero Right",
+      "category": "identity",
+      "tags": [],
+      "pattern": "a * 0",
+      "resultPattern": "0",
+      "description": "Умножение на ноль справа"
+    },
+    {
+      "id": "P.FRAC_ZERO_NUM",
+      "name": "Zero Numerator",
+      "category": "fraction",
+      "tags": [],
+      "pattern": "0 / a",
+      "resultPattern": "0",
+      "description": "Ноль в числителе"
+    },
+    {
+      "id": "P.DIV_ZERO_ERR",
+      "name": "Divide by Zero Error",
+      "category": "error",
+      "tags": [],
+      "pattern": "a / 0",
+      "resultPattern": "ERROR",
+      "description": "Деление на ноль"
+    },
+    {
+      "id": "P.MUL_ONE_L",
+      "name": "Multiply One Left",
+      "category": "identity",
+      "tags": [],
+      "pattern": "1 * a",
+      "resultPattern": "a",
+      "description": "Умножение на единицу слева"
+    },
+    {
+      "id": "P.MUL_ONE_R",
+      "name": "Multiply One Right",
+      "category": "identity",
+      "tags": [],
+      "pattern": "a * 1",
+      "resultPattern": "a",
+      "description": "Умножение на единицу справа"
+    },
+    {
+      "id": "P.MUL_ONE_FRAC_L",
+      "name": "Multiply One Fraction Left",
+      "category": "identity",
+      "tags": [],
+      "pattern": "1 * a/b",
+      "resultPattern": "a/b",
+      "description": "Умножение дроби на единицу слева"
+    },
+    {
+      "id": "P.MUL_ONE_FRAC_R",
+      "name": "Multiply One Fraction Right",
+      "category": "identity",
+      "tags": [],
+      "pattern": "a/b * 1",
+      "resultPattern": "a/b",
+      "description": "Умножение дроби на единицу справа"
+    },
+    {
+      "id": "P.DIV_ONE",
+      "name": "Divide by One",
+      "category": "identity",
+      "tags": [],
+      "pattern": "a / 1",
+      "resultPattern": "a",
+      "description": "Деление на единицу"
+    },
+    {
+      "id": "P.POW_ZERO",
+      "name": "Power Zero",
+      "category": "power",
+      "tags": [],
+      "pattern": "a ^ 0",
+      "resultPattern": "1",
+      "description": "Степень ноль"
+    },
+    {
+      "id": "P.POW_ONE",
+      "name": "Power One",
+      "category": "power",
+      "tags": [],
+      "pattern": "a ^ 1",
+      "resultPattern": "a",
+      "description": "Степень один"
+    },
+    {
+      "id": "P.POW_ONE_BASE",
+      "name": "Power One Base",
+      "category": "power",
+      "tags": [],
+      "pattern": "1 ^ a",
+      "resultPattern": "1",
+      "description": "Единица в степени"
+    }
+  ],
+  "invariantSets": [
+    {
+      "id": "default",
+      "name": "Default Set",
+      "description": "Standard math rules",
+      "version": "1.0.0",
+      "rules": [
+        {
+          "id": "R.INT_PLUS_FRAC",
+          "title": "Integer + Fraction",
+          "shortStudentLabel": "Int + Frac",
+          "description": "Add integer and fraction",
+          "level": "core",
+          "tags": [],
+          "primitiveIds": [
+            "P.INT_PLUS_FRAC"
+          ]
+        },
+        {
+          "id": "R.INT_MINUS_FRAC",
+          "title": "Integer - Fraction",
+          "shortStudentLabel": "Int - Frac",
+          "description": "Subtract fraction from integer",
+          "level": "core",
+          "tags": [],
+          "primitiveIds": [
+            "P.INT_MINUS_FRAC"
+          ]
+        },
+        {
+          "id": "R.ADD_ZERO_L",
+          "title": "Add Zero Left",
+          "shortStudentLabel": "+ 0",
+          "description": "Add zero",
+          "level": "intro",
+          "tags": [],
+          "primitiveIds": [
+            "P.ADD_ZERO_L"
+          ]
+        },
+        {
+          "id": "R.ADD_ZERO_R",
+          "title": "Add Zero Right",
+          "shortStudentLabel": "+ 0",
+          "description": "Add zero",
+          "level": "intro",
+          "tags": [],
+          "primitiveIds": [
+            "P.ADD_ZERO_R"
+          ]
+        },
+        {
+          "id": "R.MUL_ONE_L",
+          "title": "Multiply One Left",
+          "shortStudentLabel": "* 1",
+          "description": "Multiply by one",
+          "level": "intro",
+          "tags": [],
+          "primitiveIds": [
+            "P.MUL_ONE_L"
+          ]
+        },
+        {
+          "id": "R.MUL_ONE_R",
+          "title": "Multiply One Right",
+          "shortStudentLabel": "* 1",
+          "description": "Multiply by one",
+          "level": "intro",
+          "tags": [],
+          "primitiveIds": [
+            "P.MUL_ONE_R"
+          ]
+        },
+        {
+          "id": "R.INT_ADD",
+          "title": "Integer Addition",
+          "shortStudentLabel": "Add",
+          "description": "Add integers",
+          "level": "core",
+          "tags": [],
+          "primitiveIds": [
+            "P.INT_ADD"
+          ]
+        },
+        {
+          "id": "R.INT_SUB",
+          "title": "Integer Subtraction",
+          "shortStudentLabel": "Subtract",
+          "description": "Subtract integers",
+          "level": "core",
+          "tags": [],
+          "primitiveIds": [
+            "P.INT_SUB"
+          ]
+        },
+        {
+          "id": "R.INT_MUL",
+          "title": "Integer Multiplication",
+          "shortStudentLabel": "Multiply",
+          "description": "Multiply integers",
+          "level": "core",
+          "tags": [],
+          "primitiveIds": [
+            "P.INT_MUL"
+          ]
+        },
+        {
+          "id": "R.INT_DIV_EXACT",
+          "title": "Integer Division",
+          "shortStudentLabel": "Divide",
+          "description": "Divide integers",
+          "level": "core",
+          "tags": [],
+          "primitiveIds": [
+            "P.INT_DIV_TO_INT"
+          ]
+        },
+        {
+          "id": "R.FRAC_ADD_SAME",
+          "title": "Fraction Addition",
+          "shortStudentLabel": "Add Fractions",
+          "description": "Add fractions with same denominator",
+          "level": "core",
+          "tags": [],
+          "primitiveIds": [
+            "P.FRAC_ADD_SAME_DEN"
+          ]
+        },
+        {
+          "id": "R.FRAC_SUB_SAME",
+          "title": "Fraction Subtraction",
+          "shortStudentLabel": "Subtract Fractions",
+          "description": "Subtract fractions with same denominator",
+          "level": "core",
+          "tags": [],
+          "primitiveIds": [
+            "P.FRAC_SUB_SAME_DEN"
+          ]
+        },
+        {
+          "id": "R.FRAC_MUL",
+          "title": "Fraction Multiplication",
+          "shortStudentLabel": "Multiply Fractions",
+          "description": "Multiply fractions",
+          "level": "core",
+          "tags": [],
+          "primitiveIds": [
+            "P.FRAC_MUL"
+          ]
+        },
+        {
+          "id": "R.FRAC_DIV",
+          "title": "Fraction Division",
+          "shortStudentLabel": "Divide Fractions",
+          "description": "Divide fractions",
+          "level": "core",
+          "tags": [],
+          "primitiveIds": [
+            "P.FRAC_DIV"
+          ]
+        },
+        {
+          "id": "R.FRAC_ADD_DIFF",
+          "title": "Fraction Addition (Diff Denom)",
+          "shortStudentLabel": "Add Fractions",
+          "description": "Add fractions with different denominators",
+          "level": "core",
+          "tags": [],
+          "primitiveIds": [
+            "P.FRAC_ADD_DIFF"
+          ]
+        }
+      ]
+    }
+  ]
+}

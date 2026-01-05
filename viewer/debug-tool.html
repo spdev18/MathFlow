@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathEngine Debug Tool</title>
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #f3f4f6;
+            color: #111827;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .dev-badge {
+            background: #dc2626;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            gap: 16px;
+            overflow: hidden;
+        }
+
+        .panel {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 16px;
+        }
+
+        /* Top Inputs Panel */
+        .inputs-panel {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        textarea,
+        input,
+        select {
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        textarea {
+            font-family: monospace;
+            min-width: 300px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            margin-left: auto;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        button:disabled {
+            background: #93c5fd;
+            cursor: not-allowed;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 16px;
+            flex: 1;
+            min-height: 0;
+            /* For scrolling */
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .col-header {
+            padding: 12px 16px;
+            background: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .col-content {
+            flex: 1;
+            overflow: auto;
+            padding: 16px;
+            font-size: 14px;
+        }
+
+        /* JSON View */
+        pre.json-view {
+            margin: 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-break: break-all;
+            color: #333;
+        }
+
+        /* Tree View */
+        .tree-node {
+            margin-left: 16px;
+            border-left: 1px solid #e5e7eb;
+            padding-left: 8px;
+        }
+
+        .tree-node-header {
+            cursor: pointer;
+            padding: 2px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .tree-node-header:hover {
+            background: #f3f4f6;
+        }
+
+        .tree-toggle {
+            width: 12px;
+            height: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #6b7280;
+        }
+
+        .node-type {
+            color: #7c3aed;
+            font-weight: 500;
+        }
+
+        .node-value {
+            color: #059669;
+            margin-left: 4px;
+        }
+
+        /* Status colors */
+        .status-ok {
+            color: #059669;
+        }
+
+        .status-error {
+            color: #dc2626;
+        }
+
+        .status-warn {
+            color: #d97706;
+        }
+
+        /* MapMaster specific */
+        .section-title {
+            font-weight: 600;
+            margin-top: 12px;
+            margin-bottom: 4px;
+            color: #374151;
+            border-bottom: 1px solid #f3f4f6;
+            padding-bottom: 2px;
+        }
+
+        .kv-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 2px;
+        }
+
+        .kv-key {
+            color: #6b7280;
+            min-width: 80px;
+        }
+
+        .kv-val {
+            font-family: monospace;
+        }
+
+        .candidate-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            padding: 8px;
+            margin-bottom: 8px;
+            background: #f9fafb;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            display: none;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tab {
+            padding: 2px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            background: #e5e7eb;
+        }
+
+        .tab.active {
+            background: #2563eb;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div style="display:flex; align-items:center; gap:12px;">
+            <h1>MathEngine Debug Tool</h1>
+            <span class="dev-badge">DEV ONLY</span>
+        </div>
+        <div>
+            <a href="index.html" style="color: #9ca3af; text-decoration: none; font-size: 14px;">Back to Viewer</a>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Inputs -->
+        <div class="panel inputs-panel">
+            <div class="input-group">
+                <label for="latex-input">LaTeX Input</label>
+                <textarea id="latex-input" rows="3">\frac{1}{7} + \frac{3}{7}</textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="selection-type">Selection Type</label>
+                <select id="selection-type">
+                    <option value="OperatorByIndex">Operator Index</option>
+                    <option value="AstPath">AST Path</option>
+                </select>
+            </div>
+
+            <div class="input-group" id="group-op-index">
+                <label for="operator-index">Op Index</label>
+                <input type="number" id="operator-index" value="0" style="width: 60px;">
+            </div>
+
+            <div class="input-group" id="group-ast-path" style="display:none;">
+                <label for="ast-path">AST Path</label>
+                <input type="text" id="ast-path" placeholder="e.g. root.children[0]" style="width: 150px;">
+            </div>
+
+            <div class="input-group">
+                <label for="course-id-input">Course Id</label>
+                <input type="text" id="course-id-input" value="default" style="width: 100px;">
+            </div>
+            <div class="input-group">
+                <label for="mm-mode">Mode</label>
+                <select id="mm-mode">
+                    <option value="Stage1">Stage 1</option>
+                    <option value="Advanced">Advanced</option>
+                    <option value="Debug">Debug</option>
+                </select>
+            </div>
+
+            <div class="actions">
+                <button id="btn-ast-debug">AST Debug</button>
+                <button id="btn-map-debug">Map Debug</button>
+                <button id="btn-step-debug">Step Debug</button>
+                <button id="btn-global-map">Global Map</button>
+                <button id="btn-force-int-to-frac" style="background: #059669;">Force Apply INT_TO_FRAC</button>
+                <button id="btn-resolve-path" style="background: #7c3aed;">Resolve Path</button>
+            </div>
+
+            <!-- Target Tracking Display for Force Apply -->
+            <div id="force-apply-target-info"
+                style="background: #1e293b; padding: 8px 12px; border-radius: 4px; margin-bottom: 8px; font-family: monospace; font-size: 11px;">
+                <div style="color: #94a3b8; margin-bottom: 4px;">🎯 Force Apply Target:</div>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <span>selectionPath: <span id="target-path-display" style="color: #fbbf24;">-</span></span>
+                    <span>kind: <span id="target-kind-display" style="color: #22d3ee;">-</span></span>
+                    <span>surfaceNodeId: <span id="target-surface-id-display" style="color: #a78bfa;">-</span></span>
+                    <span>value: <span id="target-value-display" style="color: #10b981;">-</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Glass Box Debug Panel -->
+        <div class="panel" id="glassbox-panel"
+            style="background: #111827; color: #0f0; font-family: monospace; font-size: 12px; display: none;">
+            <div style="font-weight: bold; color: #fff; margin-bottom: 8px;">🔬 GLASS BOX: Force Apply INT_TO_FRAC</div>
+            <div id="glassbox-content">
+                <div style="color: #9ca3af;">Click "Force Apply INT_TO_FRAC" to test.</div>
+            </div>
+        </div>
+
+        <!-- TraceHub Panel -->
+        <div class="panel" id="tracehub-panel" style="background: #0f172a; border: 1px solid #334155;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <div style="font-weight: bold; color: #22d3ee; font-size: 14px;">📊 TraceHub</div>
+                <div style="display: flex; gap: 8px;">
+                    <button id="btn-tracehub-download"
+                        style="background: #0891b2; color: white; padding: 4px 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                        Download Trace JSONL
+                    </button>
+                    <button id="btn-tracehub-reset"
+                        style="background: #dc2626; color: white; padding: 4px 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                        Reset TraceHub
+                    </button>
+                    <button id="btn-tracehub-backend"
+                        style="background: #7c3aed; color: white; padding: 4px 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                        Fetch Backend Trace
+                    </button>
+                </div>
+            </div>
+            <div
+                style="display: flex; gap: 20px; font-family: monospace; font-size: 12px; color: #94a3b8; margin-bottom: 8px;">
+                <span>Viewer Events: <span id="tracehub-viewer-count" style="color: #22d3ee;">0</span></span>
+                <span>Last TraceId: <span id="tracehub-last-traceid" style="color: #a78bfa;">-</span></span>
+            </div>
+            <div id="tracehub-events"
+                style="max-height: 200px; overflow-y: auto; background: #1e293b; padding: 8px; border-radius: 4px; font-family: monospace; font-size: 11px; color: #e2e8f0;">
+                <div style="color: #64748b;">No trace events yet. Perform an action in the viewer to see events.</div>
+            </div>
+        </div>
+        <div class="results-grid">
+            <!-- Col 1: Input / Status -->
+            <div class="col">
+                <div class="col-header">Input & Status</div>
+                <div class="col-content">
+                    <div class="section-title">Rendered Preview</div>
+                    <div id="math-preview"
+                        style="font-size: 1.5em; padding: 10px; min-height: 40px; border: 1px dashed #e5e7eb; display: flex; align-items: center; justify-content: center;">
+                    </div>
+
+                    <div class="section-title">Last Request</div>
+                    <div class="kv-row"><span class="kv-key">Endpoint:</span> <span class="kv-val"
+                            id="status-endpoint">-</span></div>
+                    <div class="kv-row"><span class="kv-key">Time:</span> <span class="kv-val" id="status-time">-</span>
+                    </div>
+                    <div class="kv-row"><span class="kv-key">Status:</span> <span class="kv-val"
+                            id="status-result">-</span></div>
+
+                    <div id="error-message" style="margin-top: 16px; color: #dc2626; display: none;">
+                        <strong>Error:</strong> <span id="error-text"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 2: AST -->
+            <div class="col">
+                <div class="col-header">
+                    <span>AST View</span>
+                    <div class="tabs">
+                        <div class="tab active" data-view="tree" onclick="switchAstView('tree')">Tree</div>
+                        <div class="tab" data-view="json" onclick="switchAstView('json')">JSON</div>
+                    </div>
+                </div>
+                <div class="col-content" id="ast-content">
+                    <div style="color: #9ca3af; text-align: center; margin-top: 20px;">No AST data</div>
+                </div>
+            </div>
+
+            <!-- Col 3: MapMaster -->
+            <div class="col">
+                <div class="col-header">
+                    <span>MapMaster Pipeline</span>
+                    <div class="tabs">
+                        <div class="tab active" data-view="structured" onclick="switchMapView('structured')">View</div>
+                        <div class="tab" data-view="json" onclick="switchMapView('json')">JSON</div>
+                    </div>
+                </div>
+                <div class="col-content">
+                    <div id="map-content">
+                        <div style="color: #9ca3af; text-align: center; margin-top: 20px;">No MapMaster data</div>
+                    </div>
+                    <div id="global-map-content" style="margin-top: 16px;">
+                        <div class="section-title">Global Map (full expression)</div>
+                        <div style="color: #9ca3af; text-align: center; margin-top: 8px;">
+                            No Global Map data
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 4: StepMaster -->
+            <div class="col">
+                <div class="col-header">
+                    <span>StepMaster View</span>
+                    <div class="tabs">
+                        <div class="tab active" data-view="structured" onclick="switchStepView('structured')">View</div>
+                        <div class="tab" data-view="json" onclick="switchStepView('json')">JSON</div>
+                    </div>
+                </div>
+                <div class="col-content" id="step-content">
+                    <div style="color: #9ca3af; text-align: center; margin-top: 20px;">No StepMaster data</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading-overlay" id="loading-overlay">
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            Processing...
+        </div>
+    </div>
+
+    <script src="katex/katex.min.js"></script>
+    <script type="module" src="app/debug-tool.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+[
+  {
+    "id": "A01",
+    "category": "Integer",
+    "name": "Simple Addition",
+    "latex": "2 + 3",
+    "expectedPattern": "a + b",
+    "description": "Basic integer addition must always work."
+  },
+  {
+    "id": "A02",
+    "category": "Integer",
+    "name": "Subtraction",
+    "latex": "10 - 7",
+    "expectedPattern": "a - b",
+    "description": "Basic integer subtraction."
+  },
+  {
+    "id": "A03",
+    "category": "Integer",
+    "name": "Multiplication",
+    "latex": "5 * 6",
+    "expectedPattern": "a * b",
+    "description": "Basic integer multiplication."
+  },
+  {
+    "id": "B01",
+    "category": "Fractions",
+    "name": "Add Same Denominator",
+    "latex": "\\frac{1}{5} + \\frac{2}{5}",
+    "expectedPattern": "a/c + b/c",
+    "description": "Critical Atomic Step: Should combine numerators."
+  },
+  {
+    "id": "B02",
+    "category": "Fractions",
+    "name": "Sub Same Denominator",
+    "latex": "\\frac{7}{9} - \\frac{2}{9}",
+    "expectedPattern": "a/c - b/c",
+    "description": "Should combine numerators with minus."
+  },
+  {
+    "id": "B03",
+    "category": "Fractions",
+    "name": "Multiply Fractions",
+    "latex": "\\frac{2}{3} * \\frac{4}{5}",
+    "expectedPattern": "a/b * c/d",
+    "description": "Standard fraction multiplication."
+  },
+  {
+    "id": "C01",
+    "category": "Mixed Types",
+    "name": "Integer plus Fraction",
+    "latex": "3 + \\frac{2}{5}",
+    "expectedPattern": "a + b/c",
+    "description": "Should convert integer to fraction over 1."
+  },
+  {
+    "id": "C02",
+    "category": "Mixed Types",
+    "name": "Integer minus Fraction",
+    "latex": "1 - \\frac{1}{3}",
+    "expectedPattern": "a - b/c",
+    "description": "Should convert integer to fraction over 1."
+  },
+  {
+    "id": "D01",
+    "category": "Nesting",
+    "name": "Simple Parentheses",
+    "latex": "(2 + 3)",
+    "expectedPattern": "a + b",
+    "description": "Matcher must see through single parentheses."
+  },
+  {
+    "id": "D02",
+    "category": "Nesting",
+    "name": "Double Parentheses",
+    "latex": "((5 + 5))",
+    "expectedPattern": "a + b",
+    "description": "Matcher must recursively unwrap groups."
+  },
+  {
+    "id": "D03",
+    "category": "Nesting",
+    "name": "Operation in Denominator",
+    "latex": "\\frac{1}{2 + 3}",
+    "expectedPattern": "a + b",
+    "description": "CRITICAL: Must find op inside denominator."
+  },
+  {
+    "id": "D04",
+    "category": "Nesting",
+    "name": "Operation in Numerator",
+    "latex": "\\frac{5 - 2}{7}",
+    "expectedPattern": "a - b",
+    "description": "Must find op inside numerator."
+  },
+  {
+    "id": "D05",
+    "category": "Nesting",
+    "name": "Complex Groups",
+    "latex": "\\left(\\frac{6}{2} + \\frac{12}{2}\\right) - \\left(\\frac{5}{7} + \\frac{2}{7}\\right)",
+    "expectedPattern": "a/c + b/c",
+    "description": "Must find fraction addition inside left group."
+  },
+  {
+    "id": "E01",
+    "category": "Decimals",
+    "name": "Decimal Addition",
+    "latex": "0.5 + 0.2",
+    "expectedPattern": "a + b",
+    "description": "Decimals should behave like numbers."
+  },
+  {
+    "id": "F01",
+    "category": "Identity",
+    "name": "Add Zero",
+    "latex": "5 + 0",
+    "expectedPattern": "a + 0",
+    "description": "Should detect add zero primitive."
+  },
+  {
+    "id": "F02",
+    "category": "Identity",
+    "name": "Multiply One",
+    "latex": "7 * 1",
+    "expectedPattern": "a * 1",
+    "description": "Should detect multiply one primitive."
+  }
+]

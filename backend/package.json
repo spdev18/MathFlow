@@ -1,0 +1,30 @@
+{
+  "name": "@motor/backend-api-v1-http-server",
+  "version": "0.1.0",
+  "description": "This Project is Developed by Shivam Pandey (https://linkedin.com/in/spdev912)",
+  "author": "Shivam Pandey (https://linkedin.com/in/spdev912)",
+  "private": true,
+  "type": "module",
+  "main": "src/server/HandlerPostEntryStep.ts",
+  "module": "src/server/HandlerPostEntryStep.ts",
+  "types": "src/server/HandlerPostEntryStep.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server/cliEngineHttpServer.js",
+    "start:dev": "npx tsx src/server/cliEngineHttpServer.ts",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20.19.25",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^1.6.1"
+  },
+  "dependencies": {
+    "@types/pino": "^7.0.4",
+    "jsonwebtoken": "^9.0.2",
+    "pino": "^10.1.0",
+    "pino-pretty": "^13.1.3"
+  }
+}

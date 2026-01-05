@@ -1,0 +1,90 @@
+{
+  "invariantSetId": "fractions-basic.v1",
+  "invariants": [
+    {
+      "id": "I4.FRAC_ADD_SAME_DEN_STEP1",
+      "description": "Addition step for two fractions with the same denominator.",
+      "priority": 5,
+      "primitiveIds": [
+        "P4.FRAC_ADD_BASIC"
+      ],
+      "shape": {
+        "kind": "frac-sum",
+        "denominators": "equal"
+      },
+      "surface": {
+        "mode": "whole-expression"
+      },
+      "scenarioId": "SCN.FRAC_ADD_SAME_DEN",
+      "teachingTag": "fractions.add.same-den.step1"
+    },
+    {
+      "id": "I4.FRAC_ADD_DIFF_DEN_STEP1",
+      "description": "First step for adding two fractions with different denominators.",
+      "priority": 10,
+      "primitiveIds": [
+        "P4.FRAC_ADD_BASIC"
+      ],
+      "shape": {
+        "kind": "frac-sum",
+        "denominators": "different"
+      },
+      "surface": {
+        "mode": "whole-expression"
+      },
+      "scenarioId": "SCN.FRAC_ADD_DIFF_DEN",
+      "teachingTag": "fractions.add.diff-den.step1"
+    },
+    {
+      "id": "I4.FRAC_SUB_SAME_DEN_STEP1",
+      "description": "Subtraction step for two fractions with the same denominator.",
+      "priority": 5,
+      "primitiveIds": [
+        "P4.FRAC_SUB_BASIC"
+      ],
+      "shape": {
+        "kind": "frac-sub",
+        "denominators": "equal"
+      },
+      "surface": {
+        "mode": "whole-expression"
+      },
+      "scenarioId": "SCN.FRAC_SUB_SAME_DEN",
+      "teachingTag": "fractions.sub.same-den.step1"
+    },
+    {
+      "id": "I4.FRAC_SUB_DIFF_DEN_STEP1",
+      "description": "First step for subtracting two fractions with different denominators.",
+      "priority": 10,
+      "primitiveIds": [
+        "P4.FRAC_SUB_BASIC"
+      ],
+      "shape": {
+        "kind": "frac-sub",
+        "denominators": "different"
+      },
+      "surface": {
+        "mode": "whole-expression"
+      },
+      "scenarioId": "SCN.FRAC_SUB_DIFF_DEN",
+      "teachingTag": "fractions.sub.diff-den.step1"
+    },
+    {
+      "id": "I0.FRAC_SIMPLIFY",
+      "description": "Simplify a single fraction a/b when gcd(a,b) > 1.",
+      "priority": 20,
+      "primitiveIds": [
+        "P0.FRAC_SIMPLIFY"
+      ],
+      "shape": {
+        "kind": "single-frac",
+        "gcdGreaterThan": 1
+      },
+      "surface": {
+        "mode": "whole-expression"
+      },
+      "scenarioId": "SCN.FRAC_SIMPLIFY",
+      "teachingTag": "fractions.simplify.step1"
+    }
+  ]
+}
